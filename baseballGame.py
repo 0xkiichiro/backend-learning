@@ -25,5 +25,5 @@ def calculate_points(ops):
 
 
 print(calculate_points(ops))
-numb = "2"
+numb = "2"     
 print(numb.isdigit())

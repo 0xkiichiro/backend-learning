@@ -1,0 +1,26 @@
+    1  npm install -g sass
+    2  sass -v
+    3  git config --global user.email "barisaytimur@gmail.com"
+    4  git config --global user.name "0xkiichiro"
+    5  yarn -v
+    6  npm -g list
+    7  npx create-react-app first-react-app
+    8  npm start
+    9  yarn start
+   10  npm i -g typescript
+   11  tsc -v
+   12  node.js -v
+   13  node -v
+   14  source C:/Users/0xkiichiro/anaconda3/Scripts/activate base
+   15  python -m venv env
+   16  spırce env/Scripts/Activate
+   17  source env/Scripts/Activate
+   18  pip install django
+   19  pip freeze
+   20  pip list
+   21  pip freeze > requirements.txt
+   22  django-admin startproject
+   23  django-admin startproject main.
+   24  django-admin startproject main .
+   25  python manage.py runserver
+   26  history > history.txt

@@ -1,0 +1,20 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'someApp/index.css' %}">
+</head>
+<h1>Hello, I'm coming from an html file!</h1>
+{{ request.user }}
+<br>
+{{ caption | upper }}
+<!-- upper is a filter -->
+<br>
+<ul>
+    {% for i in my_list %}
+    <li>{{ i }}</li>
+    {% endfor %}
+</ul>
+<img src="{% static 'someApp/rest_here_soldier.jpg' %}" width="800" alt="Example" />
+<!-- this is a comment -->
+{# this is DTL comment #}
+{% comment %} {{ caption | title }} {% endcomment %}

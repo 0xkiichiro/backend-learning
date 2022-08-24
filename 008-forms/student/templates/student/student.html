@@ -1,0 +1,14 @@
+{% extends "student/base.html" %} {% block container %}
+<form action="post" enctype="multipart/formdata">
+    <!-- <label for="">student name</label>
+    <input type="text" name="name" />
+    <input type="submit" value="OK" /> -->
+
+    <!-- this token is here to protect you from hackers - check online if want to -->
+    {% csrf_token %}
+    <!-- {{form}} calls the form from forms.py
+    .asp_p makes it render vertically -->
+    {{form.as_p}}
+    <input type="submit" value="OK">
+</form>
+{% endblock container %}

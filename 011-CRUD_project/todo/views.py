@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Todo
 from .forms import TodoForm
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -20,6 +21,7 @@ def todo_create(request):
         form = TodoForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,"Todo created successfully")
             return redirect("home")
     
     context = {
@@ -36,9 +38,22 @@ def todo_update(request,id):
         if form.is_valid():
             form.save()
             return redirect("home")
-            
+
     context={
         "todo":todo,
         "form":form
     }
     return render(request,"todo/todo_update.html",context)
+
+def todo_delete(request,id):
+    todo = Todo.objects.get(id=id)
+
+    if request.method == 'POST':
+        todo.delete()
+        messages.warning(request, "Todo deleted!")
+        return redirect('home')
+
+    context={
+        "todo":todo
+    }
+    return render(request, 'todo/todo_delete.html')

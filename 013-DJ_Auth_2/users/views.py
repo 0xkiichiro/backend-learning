@@ -15,26 +15,27 @@ def home(request):
 
 def register(request):
 
-    form_user = UserForm(request.POST or None)
-    form_profile = UserProfileForm(request.POST or None)
-    # if request.method == "POST":
-    #     form_user=UserForm(request.POST)
-    #     form_profile=UserProfileForm(request.POST,request.FILES)
+    form_user = UserForm()
+    form_profile = UserProfileForm()
 
+    if request.method == "POST":
+        form_user=UserForm(request.POST)
+        form_profile=UserProfileForm(request.POST,request.FILES)
 
-    if form_user.is_valid() and form_profile.is_valid():
+        if form_user.is_valid() and form_profile.is_valid():
+            user = form_user.save()
+            profile = form_profile.save(commit=False)
+            profile.user = user
 
-        user = form_user.save()
+            login(request,user)
+            return redirect('home')
 
-        profile = form_profile.save(commit=False)
-        profile.user = user
+            # if 'profile_pic' in request.FILES:
+            #     profile.profile_pic = request.FILES['profile_pic']
 
-        if 'profile_pic' in request.FILES:
-            profile.profile_pic = request.FILES['profile_pic']
-
-        profile.save()
-        messages.success(request, "Register successful")
-        return redirect('home')
+            # profile.save()
+            # messages.success(request, "Register successful")
+            # return redirect('home')
 
     context = {
         'form_profile': form_profile,

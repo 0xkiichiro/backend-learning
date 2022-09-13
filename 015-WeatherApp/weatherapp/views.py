@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from decouple import config
 import requests
 from pprint import pprint
 from django.contrib import messages
 from .models import City
+from django.shortcuts import render,get_object_or_404
 
 def index(request):
     API_KEY = config("API_KEY")
@@ -46,3 +47,10 @@ def index(request):
     }
     
     return render(request, 'weatherapp/index.html', context)
+
+def delete_city(request, id):
+    # city = City.objects.get(id=id)
+    city = get_object_or_404(City, id=id)
+    city.delete()
+    messages.warning(request, "City deleted.")
+    return redirect("home")
